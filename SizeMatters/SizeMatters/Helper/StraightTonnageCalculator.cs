@@ -30,7 +30,6 @@ namespace SizeMatters.Helper
                 // a 100 vs t 20 => 100 - 20 = 80
                 // a 50 vs t 50 => 0
 
-
                 float rawMod = tonnageFraction * Mod.Config.TonnageMulti;
                 if (rawMod < 0)
                 {

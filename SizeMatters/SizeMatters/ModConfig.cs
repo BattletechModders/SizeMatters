@@ -31,7 +31,6 @@ namespace SizeMatters
         public void Init()
         {
 
-
         }
     }
 }
