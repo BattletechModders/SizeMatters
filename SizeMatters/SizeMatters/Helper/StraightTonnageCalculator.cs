@@ -29,19 +29,17 @@ namespace SizeMatters.Helper
                 // a 20 vs t 100 => 20 - 100 = -80
                 // a 100 vs t 20 => 100 - 20 = 80
                 // a 50 vs t 50 => 0
-
-                float rawMod = tonnageFraction * Mod.Config.TonnageMulti;
-                if (rawMod < 0)
+                if (tonnageFraction < 0)
                 {
                     // Lighter unit attacking a heavier unit
-                    modifier = (int) Math.Ceiling(rawMod);
-                    Mod.Log.Debug?.Write($"RawMod: {rawMod} => ceiling = {modifier}");
+                    modifier = (int) Math.Ceiling(tonnageFraction);
+                    Mod.Log.Debug?.Write($"RawMod: {tonnageFraction} => ceiling = {modifier}");
                 }
-                else if (rawMod > 0)
+                else if (tonnageFraction > 0)
                 {
                     // Heavier unit attacking a lighter unit
-                    modifier = (int) Math.Floor(rawMod);
-                    Mod.Log.Debug?.Write($"RawMod: {rawMod} => floor = {modifier}");
+                    modifier = (int) Math.Floor(tonnageFraction);
+                    Mod.Log.Debug?.Write($"RawMod: {tonnageFraction} => floor = {modifier}");
                 }
                 else
                 {
@@ -51,6 +49,12 @@ namespace SizeMatters.Helper
             catch (Exception e)
             {
                 Mod.Log.Warn?.Write(e, "Failed to calculate tonnage delta modifier!");
+            }
+
+            if (Math.Abs(modifier) > Mod.Config.ModifierCap)
+            {
+                if (modifier > 0) modifier = Mod.Config.ModifierCap;
+                else if (modifier < 0) modifier = Mod.Config.ModifierCap * -1;
             }
 
             return modifier;

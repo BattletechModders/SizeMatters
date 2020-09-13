@@ -17,7 +17,7 @@ namespace SizeMatters
         public bool Trace = false;
 
         public float TonnageDivisor = 5.0f;
-        public float TonnageMulti = 0.5f;
+        public int ModifierCap = 5;
 
         public VirtualTonnage VirtualTonnage = new VirtualTonnage();
 
@@ -25,6 +25,11 @@ namespace SizeMatters
         {
             Mod.Log.Info?.Write("=== MOD CONFIG BEGIN ===");
             Mod.Log.Info?.Write($"  DEBUG: {this.Debug} Trace: {this.Trace}");
+            Mod.Log.Info?.Write($"");
+            Mod.Log.Info?.Write($"  TonnageDivisor: {this.TonnageDivisor}  ModifierCap: {this.ModifierCap}");
+            Mod.Log.Info?.Write($"  Virtual Tonnage - Turrets => light: {this.VirtualTonnage.LightTurret}  medium: {this.VirtualTonnage.MediumTurret}  heavy: {this.VirtualTonnage.HeavyTurret}");
+            Mod.Log.Info?.Write($"  Virtual Tonnage - Building: {this.VirtualTonnage.Building}");
+
             Mod.Log.Info?.Write("=== MOD CONFIG END ===");
         }
 
