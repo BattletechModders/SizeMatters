@@ -29,17 +29,10 @@ namespace SizeMatters.Helper
                 // a 20 vs t 100 => 20 - 100 = -80
                 // a 100 vs t 20 => 100 - 20 = 80
                 // a 50 vs t 50 => 0
-                if (tonnageFraction < 0)
+                if (tonnageFraction < 0 || tonnageFraction > 0)
                 {
-                    // Lighter unit attacking a heavier unit
-                    modifier = (int) Math.Ceiling(tonnageFraction);
-                    Mod.Log.Debug?.Write($"RawMod: {tonnageFraction} => ceiling = {modifier}");
-                }
-                else if (tonnageFraction > 0)
-                {
-                    // Heavier unit attacking a lighter unit
                     modifier = (int) Math.Floor(tonnageFraction);
-                    Mod.Log.Debug?.Write($"RawMod: {tonnageFraction} => floor = {modifier}");
+                    Mod.Log.Debug?.Write($"RawMod: {tonnageFraction} => ceiling = {modifier}");
                 }
                 else
                 {
