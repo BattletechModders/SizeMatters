@@ -98,7 +98,7 @@ namespace SizeMatters.Helper
                 return vehicle.tonnage;
             }
 
-            return tonnage;
+            return tonnage > Mod.Config.TonnageCap ? Mod.Config.TonnageCap : tonnage;
         }
     }
 }
