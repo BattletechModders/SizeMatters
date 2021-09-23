@@ -18,7 +18,7 @@ namespace SizeMatters.Helper
 
             try
             {
-                float attackerTonnage = GetTonnage(attacker);                
+                float attackerTonnage = GetTonnage(attacker);
                 float targetTonnage = GetTonnage(target);
                 float tonnageDelta = attackerTonnage - targetTonnage;
                 Mod.Log.Debug?.Write($"TonnageDelta: {tonnageDelta} from attackerTonnage: {attackerTonnage} - targetTonnage: {targetTonnage}");
@@ -53,7 +53,7 @@ namespace SizeMatters.Helper
             return modifier;
         }
 
-        private static float GetTonnage(ICombatant combatant)
+        public static float GetTonnage(ICombatant combatant)
         {
             float tonnage = 0f;
             if (combatant == null)

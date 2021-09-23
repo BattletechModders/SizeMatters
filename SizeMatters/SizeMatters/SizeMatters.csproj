@@ -65,12 +65,18 @@
     <Compile Include="ModText.cs" />
     <Compile Include="Patches\CombatGameStatePatches.cs" />
     <Compile Include="Patches\CombatHUDWeaponSlotPatches.cs" />
+    <Compile Include="Patches\MechPatches.cs" />
     <Compile Include="Patches\ToHitPatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)$(TargetFileName)" "$(BattleTechGame)\Mods\SizeMatters" /y</PostBuildEvent>
-  </PropertyGroup>
+  <Target Name="AfterBuild">
+    <Copy
+      SourceFiles="$(TargetPath);../../mod.json"
+      DestinationFolder="E:\steam\SteamApps\common\BATTLETECH/Mods/SizeMatters/"
+      OverwriteReadOnlyFiles="true"
+      SkipUnchangedFiles="false"
+    />
+  </Target>
 </Project>
