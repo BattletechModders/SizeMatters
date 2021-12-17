@@ -85,17 +85,17 @@ namespace SizeMatters.Helper
                     tonnage = Mod.Config.VirtualTonnage.DefaultTurret;
                 }
                 Mod.Log.Debug?.Write($"Using virtual tonnage: {tonnage} for turret: {turret.DistinctId()}");
-                return tonnage;
+                return tonnage > Mod.Config.TonnageCap ? Mod.Config.TonnageCap : tonnage;
             }
             else if (combatant is Mech mech)
             {
                 Mod.Log.Debug?.Write($"Using tonnage: {mech.tonnage} for mech: {mech.DistinctId()}");
-                return mech.tonnage;
+                return mech.tonnage > Mod.Config.TonnageCap ? Mod.Config.TonnageCap : mech.tonnage;
             }
             else if (combatant is Vehicle vehicle)
             {
                 Mod.Log.Debug?.Write($"Using tonnage: {vehicle.tonnage} for vehicle: {vehicle.DistinctId()}");
-                return vehicle.tonnage;
+                return vehicle.tonnage > Mod.Config.TonnageCap ? Mod.Config.TonnageCap : vehicle.tonnage;
             }
 
             return tonnage > Mod.Config.TonnageCap ? Mod.Config.TonnageCap : tonnage;
