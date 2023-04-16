@@ -1,5 +1,4 @@
-﻿using Harmony;
-using IRBTModUtils.Logging;
+﻿using IRBTModUtils.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
@@ -70,9 +69,7 @@ namespace SizeMatters
                 Log.Error?.Write(e, $"Failed to read localizations from: {localizationPath} due to error!");
             }
 
-            // Initialize harmony
-            var harmony = HarmonyInstance.Create(HarmonyPackage);
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
+            Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), HarmonyPackage);
         }
 
     }

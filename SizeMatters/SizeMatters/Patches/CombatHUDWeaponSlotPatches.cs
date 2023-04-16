@@ -1,6 +1,4 @@
-﻿using BattleTech;
-using BattleTech.UI;
-using Harmony;
+﻿using BattleTech.UI;
 using SizeMatters.Helper;
 using System;
 
@@ -18,9 +16,6 @@ namespace SizeMatters.Patches
 
             Mod.Log.Trace?.Write("CHUDWS:SHC - entered.");
 
-            Traverse AddToolTipDetailMethod = Traverse.Create(__instance).Method("AddToolTipDetail",
-                new Type[] { typeof(string), typeof(int) });
-
             AbstractActor attacker = __instance.DisplayedWeapon.parent;
             string cacheKey = StraightTonnageCalculator.CacheKey(attacker, target);
             bool keyExists = ModState.CachedComparisonMods.TryGetValue(cacheKey, out int modifier);
@@ -31,7 +26,7 @@ namespace SizeMatters.Patches
             }
 
             string localText = new Localize.Text(Mod.LocalizedText.Label[ModText.LT_AttackModSizeDelta]).ToString();
-            AddToolTipDetailMethod.GetValue(new object[] { localText, modifier });
+            __instance.AddToolTipDetail(localText, modifier);
         }
     }
 }

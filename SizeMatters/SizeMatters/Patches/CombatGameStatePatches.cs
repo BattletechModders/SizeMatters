@@ -1,8 +1,4 @@
-﻿using BattleTech;
-using Harmony;
-using IRBTModUtils;
-
-namespace SizeMatters.Patches
+﻿namespace SizeMatters.Patches
 {
     [HarmonyPatch(typeof(CombatGameState), "OnCombatGameDestroyed")]
     static class CombatGameState_OnCombatGameDestroyed

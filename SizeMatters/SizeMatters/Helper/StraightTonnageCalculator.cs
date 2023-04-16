@@ -1,5 +1,4 @@
-﻿using BattleTech;
-using HBS.Collections;
+﻿using HBS.Collections;
 using IRBTModUtils.Extension;
 using System;
 
@@ -31,7 +30,7 @@ namespace SizeMatters.Helper
                 // a 50 vs t 50 => 0
                 if (tonnageFraction < 0 || tonnageFraction > 0)
                 {
-                    modifier = (int) Math.Floor(tonnageFraction);
+                    modifier = (int)Math.Floor(tonnageFraction);
                     Mod.Log.Debug?.Write($"RawMod: {tonnageFraction} => ceiling = {modifier}");
                 }
                 else

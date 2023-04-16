@@ -1,6 +1,4 @@
-﻿using BattleTech;
-using Harmony;
-using SizeMatters.Helper;
+﻿using SizeMatters.Helper;
 using UnityEngine;
 
 namespace SizeMatters.Patches
@@ -23,7 +21,7 @@ namespace SizeMatters.Patches
                 modifier = StraightTonnageCalculator.Modifier(attacker, target);
                 ModState.CachedComparisonMods.Add(cacheKey, modifier);
             }
-            
+
             __result += modifier;
         }
     }

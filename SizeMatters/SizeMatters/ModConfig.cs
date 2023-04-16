@@ -35,7 +35,8 @@ namespace SizeMatters
             Mod.Log.Info?.Write($"  Virtual Tonnage - Turrets => light: {this.VirtualTonnage.LightTurret}  medium: {this.VirtualTonnage.MediumTurret}  heavy: {this.VirtualTonnage.HeavyTurret}");
             Mod.Log.Info?.Write($"  Virtual Tonnage - Building: {this.VirtualTonnage.Building}");
             Mod.Log.Info?.Write($"  StatisticsToAddPerTon:");
-            foreach (string stat in this.StatisticsToAddPerTon.Keys) {
+            foreach (string stat in this.StatisticsToAddPerTon.Keys)
+            {
                 Mod.Log.Info?.Write($"    {stat}: {this.StatisticsToAddPerTon[stat]}");
             }
 
