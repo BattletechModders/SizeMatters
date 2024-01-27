@@ -14,6 +14,10 @@ namespace SizeMatters.Patches
         private static void Postfix(ToHit __instance, ref float __result, AbstractActor attacker, Weapon weapon, ICombatant target,
             Vector3 attackPosition, Vector3 targetPosition, LineOfFireLevel lofLevel)
         {
+            if (weapon.weaponDef != null && weapon.weaponDef.ComponentTags.Contains(Mod.Config.IgnoreSizeModifierTag))
+            {
+                return;
+            }
             string cacheKey = StraightTonnageCalculator.CacheKey(attacker, target);
             bool keyExists = ModState.CachedComparisonMods.TryGetValue(cacheKey, out int modifier);
             if (!keyExists)
