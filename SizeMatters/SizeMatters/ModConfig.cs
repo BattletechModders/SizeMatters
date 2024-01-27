@@ -20,7 +20,8 @@ namespace SizeMatters
         public float TonnageDivisor = 5.0f;
         public int ModifierCap = 5;
 
-        public float TonnageCap = 150f;
+        public float TonnageCapMin = 20f;
+        public float TonnageCapMax = 150f;
 
         public VirtualTonnage VirtualTonnage = new VirtualTonnage();
 
@@ -31,7 +32,7 @@ namespace SizeMatters
             Mod.Log.Info?.Write("=== MOD CONFIG BEGIN ===");
             Mod.Log.Info?.Write($"  DEBUG: {this.Debug} Trace: {this.Trace}");
             Mod.Log.Info?.Write($"");
-            Mod.Log.Info?.Write($"  TonnageDivisor: {this.TonnageDivisor}  TonnageCap: {this.TonnageCap}  ModifierCap: {this.ModifierCap}");
+            Mod.Log.Info?.Write($"  TonnageDivisor: {this.TonnageDivisor}  TonnageCap - Min: {this.TonnageCapMin}  Max: {this.TonnageCapMax}  ModifierCap: {this.ModifierCap}");
             Mod.Log.Info?.Write($"  Virtual Tonnage - Turrets => light: {this.VirtualTonnage.LightTurret}  medium: {this.VirtualTonnage.MediumTurret}  heavy: {this.VirtualTonnage.HeavyTurret}");
             Mod.Log.Info?.Write($"  Virtual Tonnage - Building: {this.VirtualTonnage.Building}");
             Mod.Log.Info?.Write($"  StatisticsToAddPerTon:");

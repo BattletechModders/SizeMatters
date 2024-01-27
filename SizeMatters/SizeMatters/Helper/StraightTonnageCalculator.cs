@@ -1,5 +1,5 @@
-﻿using HBS.Collections;
-using IRBTModUtils.Extension;
+﻿using CustomUnits;
+using HBS.Collections;
 using System;
 
 namespace SizeMatters.Helper
@@ -83,21 +83,39 @@ namespace SizeMatters.Helper
                 {
                     tonnage = Mod.Config.VirtualTonnage.DefaultTurret;
                 }
-                Mod.Log.Debug?.Write($"Using virtual tonnage: {tonnage} for turret: {turret.DistinctId()}");
-                return tonnage > Mod.Config.TonnageCap ? Mod.Config.TonnageCap : tonnage;
+                Mod.Log.Debug?.Write($"Using virtual tonnage: {tonnage} for turret: {turret.DistinctId()}");                
             }
             else if (combatant is Mech mech)
             {
-                Mod.Log.Debug?.Write($"Using tonnage: {mech.tonnage} for mech: {mech.DistinctId()}");
-                return mech.tonnage > Mod.Config.TonnageCap ? Mod.Config.TonnageCap : mech.tonnage;
+                UnitCustomInfo customInfo = mech.GetCustomInfo();
+                if (customInfo != null && customInfo.SquadInfo != null && customInfo.SquadInfo.Troopers > 1)
+                {
+                    tonnage = mech.tonnage / customInfo.SquadInfo.Troopers;
+                    Mod.Log.Debug?.Write($"Using tonnage: {tonnage} for squad: {mech.DistinctId()} with raw tonnage: {mech.tonnage} and trooper count: {customInfo.SquadInfo.Troopers}");
+                }
+                else
+                {
+                    tonnage = mech.tonnage;
+                    Mod.Log.Debug?.Write($"Using tonnage: {mech.tonnage} for mech: {mech.DistinctId()}");
+                }
             }
             else if (combatant is Vehicle vehicle)
             {
+                tonnage = vehicle.tonnage;
                 Mod.Log.Debug?.Write($"Using tonnage: {vehicle.tonnage} for vehicle: {vehicle.DistinctId()}");
-                return vehicle.tonnage > Mod.Config.TonnageCap ? Mod.Config.TonnageCap : vehicle.tonnage;
             }
 
-            return tonnage > Mod.Config.TonnageCap ? Mod.Config.TonnageCap : tonnage;
+            if (tonnage > Mod.Config.TonnageCapMax)
+            {
+                Mod.Log.Debug?.Write($"Calculated tonnage: {tonnage} exceeds configured max tonnageCap: {Mod.Config.TonnageCapMax}. Using tonnage cap.");
+                return Mod.Config.TonnageCapMax;
+            }
+            if (tonnage < Mod.Config.TonnageCapMin)
+            {
+                Mod.Log.Debug?.Write($"Calculated tonnage: {tonnage} exceeds configured min tonnageCap: {Mod.Config.TonnageCapMin}. Using tonnage cap.");
+                return Mod.Config.TonnageCapMin;
+            }
+            return tonnage;
         }
     }
 }

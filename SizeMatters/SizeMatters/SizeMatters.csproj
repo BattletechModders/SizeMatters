@@ -28,8 +28,8 @@
     <AssemblyTitle>SizeMatters</AssemblyTitle>
     <Product>SizeMatters</Product>
     <Copyright>Copyright © 2023</Copyright>
-    <AssemblyVersion>2.0.0</AssemblyVersion>
-    <FileVersion>2.0.0</FileVersion>
+    <AssemblyVersion>2.1.0</AssemblyVersion>
+    <FileVersion>2.1.0</FileVersion>
     <LangVersion>11</LangVersion>
   </PropertyGroup>
 
@@ -59,6 +59,10 @@
     </Reference>
     <Reference Include="IRBTModUtils">
       <HintPath>$(DeployedModPath)\..\IRBTModUtils\IRBTModUtils.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CustomUnits">
+      <HintPath>$(DeployedModPath)\..\CustomUnits\CustomUnits.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
