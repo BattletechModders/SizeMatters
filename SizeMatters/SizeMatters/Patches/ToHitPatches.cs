@@ -14,7 +14,7 @@ namespace SizeMatters.Patches
         private static void Postfix(ToHit __instance, ref float __result, AbstractActor attacker, Weapon weapon, ICombatant target,
             Vector3 attackPosition, Vector3 targetPosition, LineOfFireLevel lofLevel)
         {
-            if (weapon.weaponDef != null && weapon.weaponDef.ComponentTags.Contains(Mod.Config.IgnoreSizeModifierTag))
+            if (weapon.weaponDef != null && weapon.weaponDef.ComponentTags != null && weapon.weaponDef.ComponentTags.Contains(Mod.Config.IgnoreSizeModifierTag))
             {
                 return;
             }

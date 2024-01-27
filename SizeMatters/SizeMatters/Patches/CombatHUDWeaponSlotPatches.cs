@@ -16,7 +16,7 @@ namespace SizeMatters.Patches
 
             Mod.Log.Trace?.Write("CHUDWS:SHC - entered.");
 
-            if (___displayedWeapon.weaponDef != null && ___displayedWeapon.weaponDef.ComponentTags.Contains(Mod.Config.IgnoreSizeModifierTag))
+            if (___displayedWeapon.weaponDef != null && ___displayedWeapon.weaponDef.ComponentTags != null && ___displayedWeapon.weaponDef.ComponentTags.Contains(Mod.Config.IgnoreSizeModifierTag))
             {
                 return;
             }
