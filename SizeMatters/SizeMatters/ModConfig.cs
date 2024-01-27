@@ -26,13 +26,14 @@ namespace SizeMatters
         public VirtualTonnage VirtualTonnage = new VirtualTonnage();
 
         public Dictionary<string, float> StatisticsToAddPerTon = new Dictionary<string, float>();
+        public string IgnoreSizeModifierTag = "IgnoreSizeMatters";
 
         public void LogConfig()
         {
             Mod.Log.Info?.Write("=== MOD CONFIG BEGIN ===");
             Mod.Log.Info?.Write($"  DEBUG: {this.Debug} Trace: {this.Trace}");
             Mod.Log.Info?.Write($"");
-            Mod.Log.Info?.Write($"  TonnageDivisor: {this.TonnageDivisor}  TonnageCap - Min: {this.TonnageCapMin}  Max: {this.TonnageCapMax}  ModifierCap: {this.ModifierCap}");
+            Mod.Log.Info?.Write($"  TonnageDivisor: {this.TonnageDivisor}  TonnageCap - Min: {this.TonnageCapMin}  Max: {this.TonnageCapMax}  ModifierCap: {this.ModifierCap} IgnoreTag: {this.IgnoreSizeModifierTag}");
             Mod.Log.Info?.Write($"  Virtual Tonnage - Turrets => light: {this.VirtualTonnage.LightTurret}  medium: {this.VirtualTonnage.MediumTurret}  heavy: {this.VirtualTonnage.HeavyTurret}");
             Mod.Log.Info?.Write($"  Virtual Tonnage - Building: {this.VirtualTonnage.Building}");
             Mod.Log.Info?.Write($"  StatisticsToAddPerTon:");

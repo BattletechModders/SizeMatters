@@ -16,6 +16,10 @@ namespace SizeMatters.Patches
 
             Mod.Log.Trace?.Write("CHUDWS:SHC - entered.");
 
+            if (___displayedWeapon.weaponDef != null && ___displayedWeapon.weaponDef.ComponentTags != null && ___displayedWeapon.weaponDef.ComponentTags.Contains(Mod.Config.IgnoreSizeModifierTag))
+            {
+                return;
+            }
             AbstractActor attacker = __instance.DisplayedWeapon.parent;
             string cacheKey = StraightTonnageCalculator.CacheKey(attacker, target);
             bool keyExists = ModState.CachedComparisonMods.TryGetValue(cacheKey, out int modifier);
