@@ -6,11 +6,6 @@ namespace SizeMatters.Helper
 {
     public static class StraightTonnageCalculator
     {
-        public static string CacheKey(AbstractActor attacker, ICombatant target)
-        {
-            return $"{attacker.DistinctId()}-{target.DistinctId()}";
-        }
-
         public static int Modifier(AbstractActor attacker, ICombatant target)
         {
             int modifier = 0;

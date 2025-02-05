@@ -21,7 +21,7 @@ namespace SizeMatters.Patches
                 return;
             }
             AbstractActor attacker = __instance.DisplayedWeapon.parent;
-            string cacheKey = StraightTonnageCalculator.CacheKey(attacker, target);
+            var cacheKey = new SizeComparisionCacheKey(attacker, target);
             bool keyExists = ModState.CachedComparisonMods.TryGetValue(cacheKey, out int modifier);
             if (!keyExists)
             {

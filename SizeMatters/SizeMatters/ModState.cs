@@ -4,9 +4,11 @@ using System.Collections.Generic;
 namespace SizeMatters
 {
 
+    internal record struct SizeComparisionCacheKey(AbstractActor actor, ICombatant target);
+
     public static class ModState
     {
-        public static Dictionary<string, int> CachedComparisonMods = new Dictionary<string, int>() { };
+        internal static Dictionary<SizeComparisionCacheKey, int> CachedComparisonMods = new Dictionary<SizeComparisionCacheKey, int>() { };
 
         public static void Reset()
         {
