@@ -22,6 +22,8 @@ namespace SizeMatters
 
         public float TonnageCapMin = 20f;
         public float TonnageCapMax = 150f;
+        
+        public Dictionary<string, float> UnitTonnageRatio = new Dictionary<string, float>();
 
         public VirtualTonnage VirtualTonnage = new VirtualTonnage();
 
@@ -34,6 +36,11 @@ namespace SizeMatters
             Mod.Log.Info?.Write($"  DEBUG: {this.Debug} Trace: {this.Trace}");
             Mod.Log.Info?.Write($"");
             Mod.Log.Info?.Write($"  TonnageDivisor: {this.TonnageDivisor}  TonnageCap - Min: {this.TonnageCapMin}  Max: {this.TonnageCapMax}  ModifierCap: {this.ModifierCap} IgnoreTag: {this.IgnoreSizeModifierTag}");
+            Mod.Log.Info?.Write($"  UnitTonnageRatio:");
+            foreach (string stat in this.UnitTonnageRatio.Keys)
+            {
+                Mod.Log.Info?.Write($"    {stat}: {this.UnitTonnageRatio[stat]}");
+            }
             Mod.Log.Info?.Write($"  Virtual Tonnage - Turrets => light: {this.VirtualTonnage.LightTurret}  medium: {this.VirtualTonnage.MediumTurret}  heavy: {this.VirtualTonnage.HeavyTurret}");
             Mod.Log.Info?.Write($"  Virtual Tonnage - Building: {this.VirtualTonnage.Building}");
             Mod.Log.Info?.Write($"  StatisticsToAddPerTon:");

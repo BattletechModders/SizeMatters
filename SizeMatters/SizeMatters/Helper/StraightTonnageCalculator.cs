@@ -104,6 +104,20 @@ namespace SizeMatters.Helper
                 tonnage = vehicle.tonnage;
                 Mod.Log.Debug?.Write($"Using tonnage: {vehicle.tonnage} for vehicle: {vehicle.DistinctId()}");
             }
+            
+            if (combatant is AbstractActor actor)
+            {
+                foreach (string tag in actor.GetTags())
+                {
+                    if (Mod.Config.UnitTonnageRatio.TryGetValue(tag, out float tonnageRatio))
+                    {
+                        Mod.Log.Debug?.Write($"Applying Unit Tonnage Ratio {tonnageRatio} from tag {tag}");
+                        Mod.Log.Debug?.Write($"  New Tonnage is: {tonnage} * {tonnageRatio} = {tonnage * tonnageRatio}");
+                        tonnage *= tonnageRatio;
+                        break;
+                    }
+                }
+            }
 
             if (tonnage > Mod.Config.TonnageCapMax)
             {
