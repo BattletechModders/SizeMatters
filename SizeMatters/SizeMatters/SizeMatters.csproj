@@ -12,6 +12,10 @@
     <!-- flat dir -->
     <DeployedModPath>$(BattleTechGameDir)\Mods\SizeMatters</DeployedModPath>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseNoCU|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineConstants>NO_CU</DefineConstants>
+  </PropertyGroup>
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
@@ -31,6 +35,8 @@
     <AssemblyVersion>2.2.0</AssemblyVersion>
     <FileVersion>2.2.0</FileVersion>
     <LangVersion>11</LangVersion>
+    <Configurations>Debug;Release;ReleaseNoCU</Configurations>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
   <Target Name="AfterBuildMigrated" AfterTargets="CopyFilesToOutputDirectory">

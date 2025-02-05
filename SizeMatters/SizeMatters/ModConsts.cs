@@ -12,6 +12,6 @@ namespace SizeMatters
 
     public static class ModStats
     {
-
+        public const string WeaponIgnoresSizeStat = "IgnoreSizeModifiers";
     }
 }

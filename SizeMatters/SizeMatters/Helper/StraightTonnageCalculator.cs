@@ -1,4 +1,7 @@
-﻿using CustomUnits;
+﻿#if !NO_CU
+using CustomUnits;
+#endif
+
 using HBS.Collections;
 using System;
 
@@ -6,11 +9,6 @@ namespace SizeMatters.Helper
 {
     public static class StraightTonnageCalculator
     {
-        public static string CacheKey(AbstractActor attacker, ICombatant target)
-        {
-            return $"{attacker.DistinctId()}-{target.DistinctId()}";
-        }
-
         public static int Modifier(AbstractActor attacker, ICombatant target)
         {
             int modifier = 0;
@@ -87,6 +85,7 @@ namespace SizeMatters.Helper
             }
             else if (combatant is Mech mech)
             {
+                #if !NO_CU
                 UnitCustomInfo customInfo = mech.GetCustomInfo();
                 if (customInfo != null && customInfo.SquadInfo != null && customInfo.SquadInfo.Troopers > 1)
                 {
@@ -98,6 +97,10 @@ namespace SizeMatters.Helper
                     tonnage = mech.tonnage;
                     Mod.Log.Debug?.Write($"Using tonnage: {mech.tonnage} for mech: {mech.DistinctId()}");
                 }
+                #else
+                tonnage = mech.tonnage;
+                Mod.Log.Debug?.Write($"Using tonnage: {mech.tonnage} for mech: {mech.DistinctId()}");       
+                #endif
             }
             else if (combatant is Vehicle vehicle)
             {
